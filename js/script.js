@@ -16,7 +16,6 @@ links.forEach(ativarLink);
 
 // Ativar itens do orçamento
 const parametros = new URLSearchParams(location.search);
-console.log(parametros);
 
 function ativarProduto(parametro){
     const elemento = document.getElementById(parametro);
@@ -38,11 +37,6 @@ function ativarPergunta(event) {
     resposta.classList.toggle('ativa');
     const ativa  =  resposta.classList.contains('ativa')
     pergunta.setAttribute("aria-expanded", ativa)
-
-
-
-
-    console.log(control)
 }
 
 function eventosPerguntas(pergunta){
@@ -50,3 +44,30 @@ function eventosPerguntas(pergunta){
 }
 
 perguntas.forEach(eventosPerguntas);
+
+
+//Galeria de bicicletas
+const galeria = document.querySelectorAll(".bicicleta-imagens img");
+const galeriaContainer = document.querySelector(".bicicleta-imagens");
+
+function trocarImagem(event){
+    const img = event.currentTarget;
+    const media = window.matchMedia('(min-width: 1000px)').matches; //retorna um boolean verificando o tamanho da tela
+    //OU só matchMedia('(min-width: 100px)').matches, por se tratar de window
+
+    if (media){
+        galeriaContainer.prepend(img);
+    } 
+}
+
+function eventosGaleria(img){
+    img.addEventListener("click", trocarImagem)
+}
+
+galeria.forEach(eventosGaleria)
+
+
+//Animação
+if (window.SimpleAnime){
+    new SimpleAnime()
+}
